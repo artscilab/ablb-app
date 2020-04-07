@@ -1,8 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const Logout = ({loginStatus, setLoginStatus}) => {
-  setLoginStatus(false);
+const Logout = () => {
   return (
     <Redirect to="/"></Redirect>
   )

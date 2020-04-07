@@ -1,18 +1,8 @@
 import React, {useState} from 'react';
-import { Redirect } from 'react-router-dom';
-import { PageHeader, ActionButton, TextInput } from '../components/common';
+import { Redirect, useHistory } from 'react-router-dom';
+import { PageHeader, ActionButton, TextInput, LoginForm } from '../components/common';
 import { Formik } from 'formik';
 import styled from 'styled-components';
-
-const LoginForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  
-  input, button {
-    margin-bottom: 25px;
-  }
-  max-width: 500px;
-`
 
 const Login = ({loginStatus, setLoginStatus}) => {
   const [success, setSuccess] = useState(false);
@@ -21,6 +11,9 @@ const Login = ({loginStatus, setLoginStatus}) => {
     setLoginStatus(true);
     setSuccess(true);
   } 
+
+  const history = useHistory();
+
   return (
     <div>
       <PageHeader>Login</PageHeader>
@@ -44,10 +37,14 @@ const Login = ({loginStatus, setLoginStatus}) => {
               value={values.password}
               onChange={handleChange}
               type="password"
-              name="email"
+              name="password"
               placeholder="Your password"></TextInput>
 
             <ActionButton type="submit">Login</ActionButton>
+            <ActionButton inverted onClick={() => {
+              history.push("/signup");
+            }}>Sign up</ActionButton>
+
           </LoginForm>
             
         )}
