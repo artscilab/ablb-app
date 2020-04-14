@@ -15,7 +15,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Signup from './pages/Signup';
-import { SessionContext, getSessionCookie } from './utils/session';
+import { SessionContext, getSessionCookie, setSessionCookie } from './utils/session';
 
 const theme = {
   black: "#141C26",
@@ -31,6 +31,7 @@ function App() {
   const [user, setUser] = useState(getSessionCookie());
   const authChangeHandler = (cookie) => {
     setUser(cookie)
+    setSessionCookie(cookie)
   } 
   return (
     <ThemeProvider theme={theme}>

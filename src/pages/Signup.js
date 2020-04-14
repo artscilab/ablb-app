@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { LoginForm, PageHeader, ActionButton, TextInput } from '../components/common';
 import { Formik } from 'formik';
+import request from '../utils/requests';
 import * as Yup from 'yup'
+import {Link} from 'react-router-dom';
 
 const signupSchema = Yup.object().shape({
   name: Yup.string()
@@ -23,12 +25,20 @@ const signupSchema = Yup.object().shape({
 const ErrorMessage = ({children}) => <p className="message error-message">{children}</p>
 
 const Signup = () => {
+  const [success, setSuccess] = useState(false)
   return (
     <div>
       <PageHeader>Sign Up</PageHeader>
       <Formik
-        onSubmit={(values) => {
-          
+        onSubmit={async (values) => {
+          let x = await request.post("/users", {
+            user: {
+              ...values
+            }
+          })
+          if (x.status === 200) {
+            setSuccess(true)
+          }
         }}
         validationSchema={signupSchema}
         validate={(values) => {
@@ -107,6 +117,16 @@ const Signup = () => {
                 : null
               }
             <ActionButton type="submit">Sign up</ActionButton>
+            {success && (
+              <>
+              <p>Success!</p>
+              <p>
+                <Link to="/login">
+                  <ActionButton inverted>Login</ActionButton>
+                </Link>
+              </p>
+              </>
+            )}
           </LoginForm>
         )}
       </Formik>

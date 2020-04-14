@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { PageHeader, ActionButton, TextInput, LoginForm } from '../components/common';
 import { Formik } from 'formik';
 import styled from 'styled-components';
+import request from '../utils/requests';
+import { SessionContext } from '../utils/session';
 
-const Login = ({loginStatus, setLoginStatus}) => {
+const Login = () => {
   const [success, setSuccess] = useState(false);
+  const {user, authChangeHandler} = useContext(SessionContext);
 
   const clickHandler = (values) => {
-    setLoginStatus(true);
-    setSuccess(true);
+    authChangeHandler(values)
   } 
 
   const history = useHistory();
@@ -18,7 +20,17 @@ const Login = ({loginStatus, setLoginStatus}) => {
     <div>
       <PageHeader>Login</PageHeader>
       <Formik
-        onSubmit={(values) => clickHandler(values)}
+        onSubmit={async (values) => {
+          let x = await request.post("/users/login", {
+            user: {
+              ...values
+            }
+          })
+          console.log(x);
+          if (x.status === 200) {
+            authChangeHandler(x.data.user)
+          }
+        }}
         initialValues={{
           email: "",
           password: ""

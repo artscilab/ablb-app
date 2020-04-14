@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { ActionButton } from './common'
+import { getSessionCookie, SessionContext } from '../utils/session';
 
 const HeaderContainer = styled.div`
   max-width: 100%;
@@ -50,7 +51,9 @@ const HeaderContainer = styled.div`
 
 `
 
-const Header = ({loginStatus}) => {
+const Header = () => {
+  const {user, authChangeHandler} = useContext(SessionContext);
+
   return (
     <HeaderContainer>
       <div>
@@ -68,7 +71,7 @@ const Header = ({loginStatus}) => {
             <Link to="/about">About</Link>
           </li>
           <li>
-            {loginStatus 
+            {user !== null 
             ? <Link to="/logout">Logout</Link>
             :
               <Link to="/login">
@@ -78,7 +81,7 @@ const Header = ({loginStatus}) => {
               </Link>
             }
           </li>
-          {loginStatus == null &&
+          {user === null &&
             <li>
               <Link to="/signup">
                 <ActionButton>
