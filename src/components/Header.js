@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { ActionButton } from './common'
-import { getSessionCookie, SessionContext } from '../utils/session';
+import { SessionContext } from '../utils/session';
 
 const HeaderContainer = styled.div`
   max-width: 100%;
@@ -52,7 +52,7 @@ const HeaderContainer = styled.div`
 `
 
 const Header = () => {
-  const {user, authChangeHandler} = useContext(SessionContext);
+  const {user} = useContext(SessionContext);
 
   return (
     <HeaderContainer>
