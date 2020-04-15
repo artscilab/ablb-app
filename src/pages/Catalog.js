@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import request from '../utils/requests';
+import { PageHeader } from '../components/common';
 
 const Catalog = () => {
   const [lessons, setLessons] = useState(null)
@@ -19,7 +20,8 @@ const Catalog = () => {
 
   return (
     <div>
-      <h1>Catalog</h1>
+      <PageHeader>ABLB Catalog</PageHeader>
+      
       {lessons && lessons.map((lesson) => (
         <div key={lesson.id}>
           <h2>{lesson.title}</h2>

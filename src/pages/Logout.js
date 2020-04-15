@@ -4,7 +4,7 @@ import { SessionContext } from '../utils/session';
 
 
 const Logout = () => {
-  const { user, authChangeHandler } = useContext(SessionContext);
+  const { authChangeHandler } = useContext(SessionContext);
 
   useEffect(() => {
     authChangeHandler(null)
