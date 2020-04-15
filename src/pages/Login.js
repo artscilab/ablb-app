@@ -25,10 +25,10 @@ const Login = () => {
               ...values
             }
           })
-          console.log(x);
+          
           if (x.status === 200) {
             authChangeHandler(x.data.user)
-            setSuccess(true)
+            history.push("/")
           }
         }}
         initialValues={{

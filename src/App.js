@@ -15,7 +15,9 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Signup from './pages/Signup';
+import Admin from './pages/admin/Admin';
 import { SessionContext, getSessionCookie, setSessionCookie } from './utils/session';
+import AdminRoute from './utils/AdminRoute';
 
 const theme = {
   black: "#141C26",
@@ -47,10 +49,7 @@ function App() {
                 <About></About>
               </Route>
               <Route path="/login">
-                {user === null 
-                ? <Login></Login>
-                : <Redirect to="/"></Redirect>
-                }
+                <Login></Login>
               </Route>
               <Route path="/logout">
                 {user === null 
@@ -64,6 +63,7 @@ function App() {
                 : <Redirect to="/"></Redirect> 
                 }
               </Route>
+              <AdminRoute path="/admin" component={Admin}></AdminRoute>
               <Route path="/">
                 <Home></Home>
               </Route>
