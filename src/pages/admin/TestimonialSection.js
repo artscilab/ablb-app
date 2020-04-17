@@ -12,6 +12,7 @@ import TestimonialEditor from '../../components/admin/TestimonialEditor';
 const TestimonialSection = () => {
   const [testimonials, setTestimonials] = useState(null);
   const [showTestimonialEditor, setShowTestimonialEditor] = useState(false);
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
   useEffect(() => {
     const getTestimonials = async () => {
@@ -36,16 +37,17 @@ const TestimonialSection = () => {
           <ABLBSelect 
             options={testimonials} 
             getOptionLabel={t => t.name} 
-            getOptionValue={t => t.id}></ABLBSelect>
+            getOptionValue={t => t.id}
+            onChange={t => setSelectedTestimonial(t)}
+            ></ABLBSelect>
           ) : <p>No testimonials created.</p>}
         </SectionBody>
         <ActionButton onClick={() => setShowTestimonialEditor(true)}>Add Testimonial</ActionButton>
       </SectionContent>
-      {showTestimonialEditor && (
-        <SectionEditor>
-          <TestimonialEditor></TestimonialEditor>
-        </SectionEditor>
-      )}
+      
+      <SectionEditor>
+        <TestimonialEditor selectedTestimonial={selectedTestimonial}></TestimonialEditor>
+      </SectionEditor>
     </Section>
   )
 }

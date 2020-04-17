@@ -30,7 +30,7 @@ export const SectionEditor = styled.div`
   form {
     width: 100%;
   }
-  input, textarea, button {
+  input[type="text"], input[type="email"], textarea, button {
     width: 100%;
     margin-bottom: 15px;
   }

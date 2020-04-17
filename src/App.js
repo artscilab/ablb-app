@@ -18,6 +18,8 @@ import Signup from './pages/Signup';
 import Admin from './pages/admin/Admin';
 import { SessionContext, getSessionCookie, setSessionCookie } from './utils/session';
 import AdminRoute from './utils/AdminRoute';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = {
   black: "#141C26",
@@ -26,8 +28,11 @@ const theme = {
   green: "#0dbf7b",
   red: "#e53d0a",
   yellow: "f9af2b",
-  brandon: "brandon-grotesque"
+  brandon: "brandon-grotesque",
+  transparentBg: "rgba(100, 100, 120, 0.3)"
 }
+
+toast.configure()
 
 function App() {
   const [user, setUser] = useState(getSessionCookie());
@@ -68,6 +73,7 @@ function App() {
                 <Home></Home>
               </Route>
             </Switch>
+            <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
           </Layout>
         </Router>
       </SessionContext.Provider>

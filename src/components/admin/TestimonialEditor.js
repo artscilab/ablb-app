@@ -2,7 +2,9 @@ import React from 'react';
 import { Formik } from 'formik';
 import styled from 'styled-components';
 import { TextArea, TextInput, ActionButton } from '../common';
+import Checkbox from '../Checkbox'
 import request from '../../utils/requests';
+import { toast } from 'react-toastify';
 
 const Title = styled.h3`
   font-size: 30px;
@@ -13,10 +15,12 @@ const Title = styled.h3`
 const TestimonialEditor = ({selectedTestimonial}) => {
   return (
     <Formik
+      enableReinitialize
       initialValues={{
         name: "",
         text: "",
         school: "",
+        featured: false,
         ...selectedTestimonial
       }}
       onSubmit={async (values) => {
@@ -25,15 +29,21 @@ const TestimonialEditor = ({selectedTestimonial}) => {
         let data = {
           testimonial: values
         }
-        if (!selectedTestimonial) {
-          console.log("here")
-          let creation = await request.post("/testimonials", data);
-          window.location.reload()
+        try {
+          if (!selectedTestimonial) {
+            await request.post("/testimonials", data);
+            toast.success("Created testimonial!")
+          } else {
+            await request.patch(`/testimonials/${selectedTestimonial.id}`, data);  
+            toast.success("Updated testimonial!")
+          }
+        } catch (e) {
+          toast.error("There was an error submitting the form")
         }
       }}>
-        {({handleSubmit, handleChange, values}) => (
+        {({handleSubmit, handleChange, values, setFieldValue}) => (
           <form onSubmit={handleSubmit}>
-            <Title>Edit Testimonial</Title>
+            <Title>{selectedTestimonial ? "Edit Testimonial" : "Add new testimonial"}</Title>
             <TextInput 
               type="text" 
               name="name" 
@@ -51,6 +61,10 @@ const TestimonialEditor = ({selectedTestimonial}) => {
               value={values.text} 
               onChange={handleChange}
               placeholder="Testimonial Text"></TextArea>
+
+            <Checkbox
+              name="featured"
+              >Featured on homepage?</Checkbox>
             <ActionButton type="submit">Submit Changes</ActionButton>
           </form>
         )}

@@ -48,7 +48,7 @@ export const TextInput = styled.input`
   font-size: 20px;
   line-height: 24px;
   font-family: ${({theme}) => theme.brandon};
-  background: rgba(100, 100, 120, 0.3);
+  background: ${({theme}) => theme.transparentBg};
 `
 
 export const TextArea = styled.textarea`
@@ -120,7 +120,7 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   
-  input, button, p {
+  input[type="text"], button, p {
     margin-bottom: 25px;
   }
   .message {
