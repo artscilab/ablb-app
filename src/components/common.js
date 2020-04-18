@@ -116,6 +116,21 @@ export const ABLBSelect = (props) => (
     {...props}></Select>
 )
 
+export const ErrorMessage = styled.p`
+  padding: 10px 15px;
+  margin-left: 25px;
+  border: 2px solid ${({theme}) => theme.black};
+  border-color: ${({theme}) => theme.red};
+`
+
+export const AdminForm = styled.form`
+  ${ErrorMessage} {
+    font-size: 16px;
+    margin-bottom: 15px;
+    margin-left: 0;
+  }
+`
+
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -124,12 +139,8 @@ export const LoginForm = styled.form`
     margin-bottom: 25px;
   }
   .message {
-    padding: 10px 15px;
-    margin-left: 25px;
-    border: 2px solid ${({theme}) => theme.black}
   }
   .error-message {
-    border-color: ${({theme}) => theme.red}
   }
   max-width: 500px;
 `

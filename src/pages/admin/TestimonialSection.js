@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import request from '../../utils/requests';
-import { ActionButton, ABLBSelect } from '../../components/common';
+import { ABLBSelect, TextInput, TextArea } from '../../components/common';
 import { 
   Section,
   SectionContent,
   SectionHeader,
   SectionBody,
   SectionEditor } from '../../components/admin/common';
-import TestimonialEditor from '../../components/admin/TestimonialEditor';
+import Editor from '../../components/admin/editor';
+import Checkbox from '../../components/Checkbox';
+import * as Yup from 'yup';
 
 const TestimonialSection = () => {
   const [testimonials, setTestimonials] = useState(null);
-  const [showTestimonialEditor, setShowTestimonialEditor] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
   useEffect(() => {
@@ -42,11 +43,48 @@ const TestimonialSection = () => {
             ></ABLBSelect>
           ) : <p>No testimonials created.</p>}
         </SectionBody>
-        <ActionButton onClick={() => setShowTestimonialEditor(true)}>Add Testimonial</ActionButton>
       </SectionContent>
       
       <SectionEditor>
-        <TestimonialEditor selectedTestimonial={selectedTestimonial}></TestimonialEditor>
+        <Editor
+          resourceName="testimonial"
+          apiPath="testimonials"
+          validationSchema={
+            Yup.object().shape({
+              name: Yup.string().min(2, "Name too short").required("Name is required!"),
+              text: Yup.string().min(2, "Text too short").required("Testimonial text is required!"),
+              school: Yup.string().min(2, "School name too short").required("School name is required!"),
+            })
+          }
+          selected={selectedTestimonial}
+          fields={[
+            {
+              component: TextInput,
+              type: "text",
+              name: "name",
+              placeholder: "Display Name",
+              initialValue: ""
+            },
+            {
+              component: TextInput,
+              type: "text",
+              name: "school",
+              placeholder: "School",
+              initialValue: ""
+            },
+            {
+              component: TextArea,
+              name: "text",
+              placeholder: "Testimonial text",
+              initialValue: ""
+            },
+            {
+              component: Checkbox,
+              name: "featured",
+              initialValue: false,
+              label: "Featured on homepage?"
+            }
+          ]}/>
       </SectionEditor>
     </Section>
   )

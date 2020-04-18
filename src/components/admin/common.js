@@ -10,6 +10,7 @@ export const Section = styled.section`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  max-width: 1000px;
 `
 
 export const SectionContent = styled.div`
@@ -23,13 +24,12 @@ export const SectionBody = styled.div`
 `
 
 export const SectionEditor = styled.div`
-  border: 2px solid ${({theme}) => theme.red};
-  width: 400px;
-  padding: 30px;
+  flex: 1;
   
   form {
     width: 100%;
   }
+
   input[type="text"], input[type="email"], textarea, button {
     width: 100%;
     margin-bottom: 15px;
