@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useResource } from '../../utils/requests';
 import { ABLBSelect, TextInput, TextArea } from '../../components/common';
 import { 
@@ -12,6 +12,9 @@ import * as Yup from 'yup';
 import NumberChooser from '../../components/NumberChooser';
 import { useField } from 'formik';
 import styled from 'styled-components'
+import FileUpload from '../../components/FileUpload';
+import ReactPlayer from 'react-player'
+import { SessionContext } from '../../utils/session';
 
 const SelectorContainer = styled.div`
   margin-bottom: 15px;
@@ -21,6 +24,11 @@ const Label = styled.label`
   margin-bottom: 10px;
   font-size: 20px;
   display: block;
+`
+
+const PlayerContainer = styled.div`
+  width: 100%;
+  height: auto;
 `
 
 const LessonSelector = ({children, ...props}) => {
@@ -44,6 +52,7 @@ const LessonSelector = ({children, ...props}) => {
 const VideoSection = () => {
   const videos = useResource("videos")
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const {user} = useContext(SessionContext);
 
   return (
     <Section>
@@ -52,11 +61,21 @@ const VideoSection = () => {
         <SectionBody>
           <p>Select video to edit</p>
           {videos && (
-            <ABLBSelect
-              options={videos}
-              getOptionLabel={l => l.title}
-              getOptionValue={l => l.id}
-              onChange={l => setSelectedVideo(l)}></ABLBSelect>
+            <SelectorContainer>
+              <ABLBSelect
+                options={videos}
+                getOptionLabel={l => l.title}
+                getOptionValue={l => l.id}
+                onChange={l => setSelectedVideo(l)}></ABLBSelect>
+            </SelectorContainer>
+          )}
+          {selectedVideo && selectedVideo.videoLink && (
+            <ReactPlayer
+              controls
+              wrapper={PlayerContainer}
+              width="500px"
+              height="auto"
+              url={`${window.location.protocol}//${window.location.hostname}:8000/api/videos/${selectedVideo.id}/stream?token=${user.token}`} />
           )}
         </SectionBody>
       </SectionContent>
@@ -102,6 +121,9 @@ const VideoSection = () => {
               name: "lessonId",
             }
           ]}></Editor>
+          {selectedVideo && (
+            <FileUpload id={selectedVideo.id}></FileUpload>
+          )}
       </SectionEditor>
     </Section>
   )

@@ -6,7 +6,7 @@ import request from '../utils/requests';
 import { SessionContext } from '../utils/session';
 
 const Login = () => {
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
   const {user, authChangeHandler} = useContext(SessionContext);
 
   const history = useHistory();
