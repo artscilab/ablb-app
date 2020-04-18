@@ -9,6 +9,7 @@ const Title = styled.h3`
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 25px;
+  font-family: ${props => props.theme.brandon};
 `
 
 const Editor = ({apiPath, selected, resourceName, fields, validationSchema}) => {

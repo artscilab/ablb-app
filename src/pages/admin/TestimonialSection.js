@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import request from '../../utils/requests';
+import React, { useState } from 'react';
+import { useResource } from '../../utils/requests';
 import { ABLBSelect, TextInput, TextArea } from '../../components/common';
 import { 
   Section,
@@ -12,36 +12,24 @@ import Checkbox from '../../components/Checkbox';
 import * as Yup from 'yup';
 
 const TestimonialSection = () => {
-  const [testimonials, setTestimonials] = useState(null);
+  const testimonials = useResource("testimonials");
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
-
-  useEffect(() => {
-    const getTestimonials = async () => {
-      try {
-        const testimonialReq = await request.get("/testimonials");
-        
-        setTestimonials(testimonialReq.data)
-      } catch (e) {
-        console.log("failed to get testimonials")
-      } 
-    }
-
-    getTestimonials();
-  }, [])
 
   return (
     <Section>
       <SectionContent>
         <SectionHeader>Testimonials</SectionHeader>
         <SectionBody>
-        {testimonials ? (
-          <ABLBSelect 
-            options={testimonials} 
-            getOptionLabel={t => t.name} 
-            getOptionValue={t => t.id}
-            onChange={t => setSelectedTestimonial(t)}
-            ></ABLBSelect>
-          ) : <p>No testimonials created.</p>}
+          <p>Select testimonial to edit</p>
+
+          {testimonials && (
+            <ABLBSelect 
+              options={testimonials} 
+              getOptionLabel={t => t.name} 
+              getOptionValue={t => t.id}
+              onChange={t => setSelectedTestimonial(t)}
+              ></ABLBSelect>
+            )}
         </SectionBody>
       </SectionContent>
       

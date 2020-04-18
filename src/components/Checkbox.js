@@ -42,9 +42,9 @@ const StyledCheckbox = styled.div`
 
   ${Icon} {
     transition: all .2s ease;
-    opacity: ${props => props.checked ? '1' : '0.3'};
+    opacity: ${props => props.checked ? '1' : '0'};
     &:hover {
-      opacity: 0.8;
+      opacity: 0.2;
     }
   }
 

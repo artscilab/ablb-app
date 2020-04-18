@@ -84,7 +84,8 @@ export const ABLBSelect = (props) => (
       input: styles => {
         return {
           ...styles,
-          color: "#fff"
+          color: "#fff",
+          height: "35px"
         }
       },
       menu: styles => {
