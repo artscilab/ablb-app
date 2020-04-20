@@ -11,6 +11,11 @@ const NoMatch = () => {
           HomePage
         </ActionButton>
       </Link>
+      <Link to="/catalog">
+        <ActionButton>
+          Catalog
+        </ActionButton>
+      </Link>
     </div>
   );
 }
