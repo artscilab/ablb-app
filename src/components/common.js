@@ -81,11 +81,16 @@ export const ABLBSelect = (props) => (
           color: "#fff"
         }
       },
+      valueContainer: styles => {
+        return {
+          ...styles,
+          height: "38px"
+        } 
+      },
       input: styles => {
         return {
           ...styles,
           color: "#fff",
-          height: "35px"
         }
       },
       menu: styles => {
@@ -125,6 +130,11 @@ export const ErrorMessage = styled.p`
 `
 
 export const AdminForm = styled.form`
+  ${TextInput}, button  {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
   ${ErrorMessage} {
     font-size: 16px;
     margin-bottom: 15px;

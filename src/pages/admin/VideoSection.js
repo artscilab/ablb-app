@@ -44,6 +44,7 @@ const LessonSelector = ({children, ...props}) => {
         options={lessons}
         getOptionLabel={l => l.title}
         getOptionValue={l => l.id}
+        placeholder="Start typing to search lessons"
         onChange={l => helpers.setValue(l !== null ? l.id : "")}></ABLBSelect>
     </SelectorContainer>
   )

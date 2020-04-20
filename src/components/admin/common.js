@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { TextInput, TextArea } from '../common'
 
 export const SectionHeader = styled.h2`
   font-family: ${({theme}) => theme.brandon};
@@ -36,7 +37,7 @@ export const SectionEditor = styled.div`
     width: 100%;
   }
 
-  input[type="text"], input[type="email"], textarea, button {
+  ${TextInput}, ${TextArea}, button {
     width: 100%;
     margin-bottom: 15px;
   }
