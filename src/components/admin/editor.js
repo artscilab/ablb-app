@@ -12,7 +12,7 @@ const Title = styled.h3`
   font-family: ${props => props.theme.brandon};
 `
 
-const Editor = ({apiPath, selected, resourceName, fields, validationSchema}) => {
+const Editor = ({apiPath, selected, resourceName, fields, validationSchema, validate}) => {
   let initialValues = {}
 
   fields.forEach(f => {
@@ -21,6 +21,7 @@ const Editor = ({apiPath, selected, resourceName, fields, validationSchema}) => 
 
   return (
     <Formik
+      validate={validate}
       enableReinitialize
       validationSchema={validationSchema}
       initialValues={{

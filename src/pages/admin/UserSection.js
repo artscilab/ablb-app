@@ -34,7 +34,8 @@ const RoleSelector = ({children, ...props}) => {
       <ABLBSelect
         isSearchable={false}
         {...field}
-        value={roles ? roles.find(option => option.id === meta.value) : ''}
+        isClearable={false}
+        value={roles ? roles.find(option => option.value === meta.value) : ''}
         options={roles}
         onChange={l => helpers.setValue(l !== null ? l.value : "")}></ABLBSelect>
     </SelectorContainer>
@@ -76,14 +77,21 @@ const UserSection = () => {
                 .email("Invalid email")
                 .required("Email is required"),
               password: Yup.string()
-                .min(8, "Choose a password at least 8 characters long")
-                .required("Password is required"),
+                .min(8, "Choose a password at least 8 characters long"),
               school: Yup.string()
                 .min(2, "Too short")
                 .required("Please add a school (or n/a)"),
-              confirmPassword: Yup.string().required(),
+              confirmPassword: Yup.string(),
             })
           }
+          validate={(values) => {
+            const { password, confirmPassword } = values;
+            if (password !== confirmPassword) {
+              return {
+                confirmPassword: "Passwords must match"
+              }
+            }
+          }}
           selected={selectedUser}
           fields={[
             {
