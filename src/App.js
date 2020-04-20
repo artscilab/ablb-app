@@ -20,6 +20,7 @@ import { SessionContext, getSessionCookie, setSessionCookie } from './utils/sess
 import AdminRoute from './utils/AdminRoute';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NoMatch from './pages/NoMatch';
 
 const theme = {
   black: "#141C26",
@@ -69,8 +70,11 @@ function App() {
                 }
               </Route>
               <AdminRoute path="/admin" component={Admin}></AdminRoute>
-              <Route path="/">
+              <Route exact path="/">
                 <Home></Home>
+              </Route>
+              <Route path="*">
+                <NoMatch></NoMatch>
               </Route>
             </Switch>
             <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
