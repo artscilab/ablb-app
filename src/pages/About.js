@@ -5,6 +5,7 @@ const About = () => {
   return (
     <div>
       <PageHeader>About</PageHeader>
+      <p>ABLB is a project started in the ArtSciLab.</p>
     </div>
   )
 }
