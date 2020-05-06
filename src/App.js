@@ -21,6 +21,7 @@ import AdminRoute from './utils/AdminRoute';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoMatch from './pages/NoMatch';
+import Footer from './components/Footer';
 
 const theme = {
   black: "#141C26",
@@ -79,6 +80,7 @@ function App() {
             </Switch>
             <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
           </Layout>
+          <Footer></Footer>
         </Router>
       </SessionContext.Provider>
     </ThemeProvider>
