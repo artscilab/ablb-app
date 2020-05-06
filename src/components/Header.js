@@ -13,6 +13,10 @@ const HeaderContainer = styled.div`
   align-items: center;
   padding: 0 50px;
 
+  img {
+    max-height: 50px;
+  }
+
   p {
     font-size: 18px;
     font-family: ${({theme}) => theme.brandon};
@@ -48,7 +52,20 @@ const HeaderContainer = styled.div`
       }
     }
   }
+`
 
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    max-height: 50px;
+    margin-right: 15px;
+  }
+
+  p {
+    font-size: 22px;
+  }
 `
 
 const Header = () => {
@@ -56,9 +73,10 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <div>
+      <LogoContainer>
+        <img src="./ablb_white.png"></img>
         <p>ABLB</p>
-      </div>
+      </LogoContainer>
       <nav>
         <ul>
           <li>

@@ -28,7 +28,7 @@ const theme = {
   white: "#ffffff",
   green: "#0dbf7b",
   red: "#e53d0a",
-  yellow: "f9af2b",
+  yellow: "#f9af2b",
   brandon: "brandon-grotesque",
   transparentBg: "rgba(100, 100, 120, 0.3)"
 }

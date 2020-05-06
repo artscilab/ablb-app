@@ -1,42 +1,166 @@
-import React, { useState, useEffect } from 'react';
-import { PageHeader, PageDescription } from '../components/common';
+import React, { useState, useEffect, useContext } from 'react';
+import { PageHeader, ActionButton } from '../components/common';
 import styled from 'styled-components';
 import request from '../utils/requests';
+import CandyStripe from '../components/CandyStripe';
+import ReactPlayer from 'react-player';
+import {useHistory} from 'react-router-dom';
+import { SessionContext } from '../utils/session';
+
+const TestimonialContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  margin-bottom: 15px;
+`
+
+const TestimonialName = styled.p`
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+`
+
+const TestimonialText = styled.p`
+  font-size: 22px;
+  flex: 1;
+`
 
 const TestimonialBox = styled.div`
-  padding: 15px;
-  background-color: ${({theme}) => theme.green};
-
+  padding: 25px;
+  border: 2px solid ${({theme}) => theme.green};
+  width: 500px;
+  margin: 35px 15px;
+  display: flex;
+  flex-direction: column;
+  
+  ${TestimonialName} {
+    text-align: right;
+  }
+  ${TestimonialText} {
+    text-align: left;
+    margin-bottom: 15px;
+  }
 `
+
+const JumbotronDescription = styled.div`
+  flex: 1;
+
+  p {
+    margin-bottom: 15px;
+  }
+`
+
+const HomeJumbotron = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  align-items: flex-start;
+
+  img {
+    max-width: 250px;
+    margin-right: 35px;
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  ${CandyStripe} {
+    margin: 0 0 25px 0;
+  }
+`
+
+const IntroVideoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+
+  h1 {
+    margin-bottom: 35px;
+  }
+`
+
+const CallToAction = styled.div`
+  margin: 100px 0;
+
+  p.lead {
+    margin-bottom: 15px;
+  }
+
+  ${ActionButton} {
+    margin: 0 auto;
+    display: block
+  }
+`
+
 const Home = () => {
-  const [testimonials, setTestimonials] = useState(null);
+  const [featuredTestimonials, setFeaturedTestimonials] = useState(null);
+  const history = useHistory()
+  const { user } = useContext(SessionContext);
 
   useEffect(() => {
     const getTestimonials = async () => {
-      const testimonials = await request.get("/testimonials");
+      const testimonials = await request.get("/testimonials?featured=true");
       if (testimonials.status === 200) {
         console.log(testimonials);
         if (testimonials.data.length > 0) {
-          setTestimonials(testimonials.data)
+          setFeaturedTestimonials(testimonials.data)
         }
       }
     }
 
-    getTestimonials();
+    getTestimonials() ;
   }, [])
 
   return (
     <div>
-      <PageHeader>ABLB</PageHeader>
-      <div className="home-header">
-        <PageDescription>Arts-Based Learning in Business</PageDescription>
-        <p>This is a description</p>
-      </div>
-      {testimonials && (
-        <TestimonialBox>
-          <p>{testimonials[0].text}</p>
-          <p>{testimonials[0].name}</p>
-        </TestimonialBox>
+      <HomeJumbotron className="home-header">
+        <div>
+          <img src="./ablb_color.png" alt="ABLB Logo"></img>
+        </div>
+        <JumbotronDescription>
+          <h1>Arts-Based Learning in Business</h1>
+          <CandyStripe></CandyStripe>
+          <p>Insert some marketing copy here</p>
+          {!user && (
+            <ActionButton onClick={() => history.push("/signup")}>
+              Sign up
+            </ActionButton>
+          )}
+        </JumbotronDescription>
+      </HomeJumbotron>
+      <IntroVideoContainer>
+        <h1>Introduction</h1>
+        <ReactPlayer 
+          width={960}
+          height={540}
+          url="./introTrailer.mp4" 
+          controls 
+          playing={false}></ReactPlayer>
+      </IntroVideoContainer>
+      {!user && (
+        <CallToAction>
+          <p className="text-center lead">Get started today!</p>
+          <ActionButton onClick={() => history.push("/catalog")}>
+            Get Started
+          </ActionButton>
+        </CallToAction>
+      )}
+      {featuredTestimonials && (
+        <div>
+          <h1 className="text-center">Testimonials</h1>
+          <TestimonialContainer>
+            {featuredTestimonials.map((t) => (
+              <TestimonialBox>
+                <TestimonialText>{t.text}</TestimonialText>
+                <TestimonialName>{t.name}, {t.school}</TestimonialName>
+              </TestimonialBox>
+            ))}
+          </TestimonialContainer>
+        </div>
       )}
     </div>
   )

@@ -146,9 +146,10 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   
-  input[type="text"], button, p {
+  ${TextInput}, button, p {
     margin-bottom: 25px;
   }
+  
   .message {
   }
   .error-message {
