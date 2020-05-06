@@ -54,9 +54,10 @@ const JumbotronDescription = styled.div`
 const HomeJumbotron = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 50px;
+  margin: 50px auto;
+  width: 1000px;
   align-items: flex-start;
-
+  
   img {
     max-width: 250px;
     margin-right: 35px;
@@ -84,10 +85,10 @@ const IntroVideoContainer = styled.div`
 `
 
 const CallToAction = styled.div`
-  margin: 100px 0;
+  margin: 100px 0 15px 0;
 
   p.lead {
-    margin-bottom: 15px;
+    margin-bottom: 35px;
   }
 
   ${ActionButton} {
@@ -125,7 +126,11 @@ const Home = () => {
           <h1>Arts-Based Learning in Business</h1>
           <CandyStripe></CandyStripe>
           <p>Insert some marketing copy here</p>
-          {!user && (
+          {user ? (
+            <ActionButton onClick={() => history.push("/catalog")}>
+              See Lessons
+            </ActionButton>
+          ) : (
             <ActionButton onClick={() => history.push("/signup")}>
               Sign up
             </ActionButton>
@@ -141,26 +146,23 @@ const Home = () => {
           controls 
           playing={false}></ReactPlayer>
       </IntroVideoContainer>
-      {!user && (
-        <CallToAction>
-          <p className="text-center lead">Get started today!</p>
-          <ActionButton onClick={() => history.push("/catalog")}>
-            Get Started
-          </ActionButton>
-        </CallToAction>
-      )}
+      
+      <CallToAction>
+        <p className="text-center lead">Get started today!</p>
+        <ActionButton onClick={() => history.push("/catalog")}>
+          Get Started
+        </ActionButton>
+      </CallToAction>
+      
       {featuredTestimonials && (
-        <div>
-          <h1 className="text-center">Testimonials</h1>
-          <TestimonialContainer>
-            {featuredTestimonials.map((t) => (
-              <TestimonialBox>
-                <TestimonialText>{t.text}</TestimonialText>
-                <TestimonialName>{t.name}, {t.school}</TestimonialName>
-              </TestimonialBox>
-            ))}
-          </TestimonialContainer>
-        </div>
+        <TestimonialContainer>
+          {featuredTestimonials.map((t) => (
+            <TestimonialBox>
+              <TestimonialText>{t.text}</TestimonialText>
+              <TestimonialName>{t.name}, {t.school}</TestimonialName>
+            </TestimonialBox>
+          ))}
+        </TestimonialContainer>
       )}
     </div>
   )
