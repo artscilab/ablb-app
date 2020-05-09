@@ -4,6 +4,7 @@ import {useDropzone} from 'react-dropzone'
 import { ActionButton } from './common';
 import { toast } from 'react-toastify';
 import request from '../utils/requests';
+import ProgressBar from './ProgressBar';
 
 const FileUploadForm = styled.div`
 `
@@ -30,6 +31,7 @@ const FileContainer = styled.div`
 
 const FileUpload = ({ children, ...props }) => {
   const [file, setFile] = useState(null);
+  const [progress, setProgress] = useState(0);
 
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
@@ -53,6 +55,11 @@ const FileUpload = ({ children, ...props }) => {
           <p className="selected">Selected: {file.name}</p>
         )}
       </FileContainer>
+      
+      {progress > 0 &&
+        <ProgressBar percentage={progress}></ProgressBar>
+      }
+      
       <ActionButton onClick={async () => {
         if (!file) {
           toast.error("Choose a file!")
@@ -68,7 +75,7 @@ const FileUpload = ({ children, ...props }) => {
             },
             onUploadProgress: function(progressEvent) {
               let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-              console.log(percentCompleted)
+              setProgress(percentCompleted)
             }
           })
           window.location.reload();
