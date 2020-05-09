@@ -60,10 +60,15 @@ const FileUpload = ({ children, ...props }) => {
         }
         const formData = new FormData();
         formData.append("videoFile", file)
+        
         try {
           await request.post(`/videos/${props.id}/upload`, formData, {
             headers: {
               'content-type': "multipart/form-data"
+            },
+            onUploadProgress: function(progressEvent) {
+              let percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+              console.log(percentCompleted)
             }
           })
           window.location.reload();
