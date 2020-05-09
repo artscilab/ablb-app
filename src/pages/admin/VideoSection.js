@@ -76,7 +76,7 @@ const VideoSection = () => {
               wrapper={PlayerContainer}
               width="500px"
               height="auto"
-              url={`${window.location.protocol}//${window.location.hostname}:8000/api/videos/${selectedVideo.id}/stream?token=${user.token}`} />
+              url={`/api/videos/${selectedVideo.id}/stream?token=${user.token}`} />
           )}
         </SectionBody>
       </SectionContent>
