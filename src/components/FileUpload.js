@@ -61,7 +61,7 @@ const FileUpload = ({ children, ...props }) => {
         const formData = new FormData();
         formData.append("videoFile", file)
         try {
-          await request.patch(`/videos/${props.id}/upload`, formData, {
+          await request.put(`/videos/${props.id}/upload`, formData, {
             headers: {
               'content-type': "multipart/form-data"
             }
