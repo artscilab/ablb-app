@@ -39,7 +39,8 @@ const FileUpload = ({ children, ...props }) => {
     onDropRejected: f => {
       toast.error("Only mp4 videos are supported")
     },
-    accept: "video/mp4"
+    accept: "video/mp4",
+    maxSize: 1048576 * 500,
   });
   
   return (
