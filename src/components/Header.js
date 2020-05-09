@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <LogoContainer>
-        <img src="./ablb_white.png"></img>
+        <img alt="ablb logo" src="../ablb_white.png"></img>
         <p>ABLB</p>
       </LogoContainer>
       <nav>

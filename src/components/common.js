@@ -1,13 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 import Select from 'react-select';
+import CandyStripe from './CandyStripe';
 
-export const PageHeader = styled.h1`
+const PageHeaderText = styled.h1`
   font-size: 50px;
   font-weight: 700;
   text-transform: uppercase;
   font-family: ${({theme}) => theme.brandon};
 `
+
+export const PageHeaderContainer = styled.div`
+  width: 1000px;
+  margin: 0 auto;
+`
+
+export const PageContent = styled.div`
+  width: 1000px;
+  margin: 50px auto;
+`
+
+export const PageHeader = (props) => {
+  return (
+    <PageHeaderContainer>
+      <PageHeaderText>
+        {props.children}
+      </PageHeaderText>
+      <CandyStripe></CandyStripe>
+    </PageHeaderContainer>
+  )  
+}
 
 export const PageDescription = styled.p`
   font-size: 35px;

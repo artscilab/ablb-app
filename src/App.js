@@ -22,10 +22,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer';
+import Lesson from './pages/Lesson';
 
 const theme = {
   black: "#141C26",
   darkGray: "#2c333c",
+  boxShadowColor: "#1f2834",
   white: "#ffffff",
   green: "#0dbf7b",
   red: "#e53d0a",
@@ -73,6 +75,9 @@ function App() {
               <AdminRoute path="/admin" component={Admin}></AdminRoute>
               <Route exact path="/">
                 <Home></Home>
+              </Route>
+              <Route path="/lesson/:id">
+                <Lesson></Lesson>
               </Route>
               <Route path="*">
                 <NoMatch></NoMatch>

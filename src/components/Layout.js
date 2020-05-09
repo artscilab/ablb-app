@@ -6,7 +6,7 @@ const LayoutContainer = styled.div`
   color: ${({theme}) => theme.white};
   min-height: 100%;
   padding: 15px;
-
+  flex: 1;
   @media (min-width: 768px) {
     padding: 15px 50px;
   }

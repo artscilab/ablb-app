@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { PageHeader, ActionButton } from '../components/common';
+import { PageContent, ActionButton } from '../components/common';
 import styled from 'styled-components';
 import request from '../utils/requests';
 import CandyStripe from '../components/CandyStripe';
@@ -55,7 +55,6 @@ const HomeJumbotron = styled.div`
   display: flex;
   flex-direction: row;
   margin: 50px auto;
-  width: 1000px;
   align-items: flex-start;
   
   img {
@@ -118,52 +117,55 @@ const Home = () => {
 
   return (
     <div>
-      <HomeJumbotron className="home-header">
-        <div>
-          <img src="./ablb_color.png" alt="ABLB Logo"></img>
-        </div>
-        <JumbotronDescription>
-          <h1>Arts-Based Learning in Business</h1>
-          <CandyStripe></CandyStripe>
-          <p>Insert some marketing copy here</p>
-          {user ? (
-            <ActionButton onClick={() => history.push("/catalog")}>
-              See Lessons
-            </ActionButton>
-          ) : (
-            <ActionButton onClick={() => history.push("/signup")}>
-              Sign up
-            </ActionButton>
-          )}
-        </JumbotronDescription>
-      </HomeJumbotron>
-      <IntroVideoContainer>
-        <h1>Introduction</h1>
-        <ReactPlayer 
-          width={960}
-          height={540}
-          url="./introTrailer.mp4" 
-          controls 
-          playing={false}></ReactPlayer>
-      </IntroVideoContainer>
-      
-      <CallToAction>
-        <p className="text-center lead">Get started today!</p>
-        <ActionButton onClick={() => history.push("/catalog")}>
-          Get Started
-        </ActionButton>
-      </CallToAction>
-      
-      {featuredTestimonials && (
-        <TestimonialContainer>
-          {featuredTestimonials.map((t) => (
-            <TestimonialBox>
-              <TestimonialText>{t.text}</TestimonialText>
-              <TestimonialName>{t.name}, {t.school}</TestimonialName>
-            </TestimonialBox>
-          ))}
-        </TestimonialContainer>
-      )}
+      <PageContent>
+
+        <HomeJumbotron className="home-header">
+          <div>
+            <img src="./ablb_color.png" alt="ABLB Logo"></img>
+          </div>
+          <JumbotronDescription>
+            <h1>Arts-Based Learning in Business</h1>
+            <CandyStripe></CandyStripe>
+            <p>Insert some marketing copy here</p>
+            {user ? (
+              <ActionButton onClick={() => history.push("/catalog")}>
+                See Lessons
+              </ActionButton>
+            ) : (
+              <ActionButton onClick={() => history.push("/signup")}>
+                Sign up
+              </ActionButton>
+            )}
+          </JumbotronDescription>
+        </HomeJumbotron>
+        <IntroVideoContainer>
+          <h1>Introduction</h1>
+          <ReactPlayer 
+            width={960}
+            height={540}
+            url="./introTrailer.mp4" 
+            controls 
+            playing={false}></ReactPlayer>
+        </IntroVideoContainer>
+        
+        <CallToAction>
+          <p className="text-center lead">Get started today!</p>
+          <ActionButton onClick={() => history.push("/catalog")}>
+            Get Started
+          </ActionButton>
+        </CallToAction>
+        
+        {featuredTestimonials && (
+          <TestimonialContainer>
+            {featuredTestimonials.map((t) => (
+              <TestimonialBox>
+                <TestimonialText>{t.text}</TestimonialText>
+                <TestimonialName>{t.name}, {t.school}</TestimonialName>
+              </TestimonialBox>
+            ))}
+          </TestimonialContainer>
+        )}
+      </PageContent>
     </div>
   )
 }

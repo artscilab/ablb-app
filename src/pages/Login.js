@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import { PageHeader, ActionButton, TextInput, LoginForm } from '../components/common';
+import { PageHeader, PageContent, ActionButton, TextInput, LoginForm } from '../components/common';
 import { Formik } from 'formik';
 import request from '../utils/requests';
 import { SessionContext } from '../utils/session';
@@ -18,49 +18,52 @@ const Login = () => {
   return (
     <div>
       <PageHeader>Login</PageHeader>
-      <Formik
-        onSubmit={async (values) => {
-          let x = await request.post("/users/login", {
-            user: {
-              ...values
+      <PageContent>
+
+        <Formik
+          onSubmit={async (values) => {
+            let x = await request.post("/users/login", {
+              user: {
+                ...values
+              }
+            })
+            
+            if (x.status === 200) {
+              authChangeHandler(x.data.user)
+              history.push("/")
             }
-          })
-          
-          if (x.status === 200) {
-            authChangeHandler(x.data.user)
-            history.push("/")
-          }
-        }}
-        initialValues={{
-          email: "",
-          password: ""
-        }}
-      >
-        {({handleSubmit, handleChange, values}) => (
-          <LoginForm onSubmit={handleSubmit}>
-            <TextInput
-              value={values.email}
-              onChange={handleChange}
-              type="email"
-              name="email"
-              placeholder="Your email"></TextInput>
-              
-            <TextInput
-              value={values.password}
-              onChange={handleChange}
-              type="password"
-              name="password"
-              placeholder="Your password"></TextInput>
+          }}
+          initialValues={{
+            email: "",
+            password: ""
+          }}
+        >
+          {({handleSubmit, handleChange, values}) => (
+            <LoginForm onSubmit={handleSubmit}>
+              <TextInput
+                value={values.email}
+                onChange={handleChange}
+                type="email"
+                name="email"
+                placeholder="Your email"></TextInput>
+                
+              <TextInput
+                value={values.password}
+                onChange={handleChange}
+                type="password"
+                name="password"
+                placeholder="Your password"></TextInput>
 
-            <ActionButton type="submit">Login</ActionButton>
-            <ActionButton inverted onClick={() => {
-              history.push("/signup");
-            }}>Sign up</ActionButton>
+              <ActionButton type="submit">Login</ActionButton>
+              <ActionButton inverted onClick={() => {
+                history.push("/signup");
+              }}>Sign up</ActionButton>
 
-          </LoginForm>
-        )}
-      </Formik>
-      {success && <Redirect to="/"></Redirect>}
+            </LoginForm>
+          )}
+        </Formik>
+        {success && <Redirect to="/"></Redirect>}
+      </PageContent>
     </div>
   )
 }
