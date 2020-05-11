@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import request from '../utils/requests';
 import CandyStripe from '../components/CandyStripe';
 import ReactPlayer from 'react-player';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import { SessionContext } from '../utils/session';
 
 const TestimonialContainer = styled.div`
@@ -128,13 +128,17 @@ const Home = () => {
             <CandyStripe></CandyStripe>
             <p>Insert some marketing copy here</p>
             {user ? (
-              <ActionButton onClick={() => history.push("/catalog")}>
-                See Lessons
-              </ActionButton>
+              <Link to="/catalog">
+                <ActionButton>
+                  See Lessons
+                </ActionButton>
+              </Link>
             ) : (
-              <ActionButton onClick={() => history.push("/signup")}>
-                Sign up
-              </ActionButton>
+              <Link to="/signup">
+                <ActionButton>
+                  Sign up
+                </ActionButton>
+              </Link>
             )}
           </JumbotronDescription>
         </HomeJumbotron>
@@ -158,7 +162,7 @@ const Home = () => {
         {featuredTestimonials && (
           <TestimonialContainer>
             {featuredTestimonials.map((t) => (
-              <TestimonialBox>
+              <TestimonialBox key={t.id}>
                 <TestimonialText>{t.text}</TestimonialText>
                 <TestimonialName>{t.name}, {t.school}</TestimonialName>
               </TestimonialBox>

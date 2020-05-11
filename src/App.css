@@ -21,6 +21,9 @@ a:hover {
   font-size: 30px;
 }
 
+.error {
+  color: #e53d0a;
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Brandon-Grotesque", sans-serif;

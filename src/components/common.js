@@ -57,6 +57,18 @@ export const ActionButton = styled.button`
     border: 2px solid ${({theme}) => theme.green};
     color: ${({theme, inverted}) => theme.green};
   }
+
+  &:disabled {
+    background: ${({theme}) => theme.darkGray};
+    color: ${({theme, inverted}) => theme.white};
+    border: 2px solid transparent;
+
+    &:hover {
+      background: ${({theme}) => theme.darkGray};
+      color: ${({theme, inverted}) => theme.white};
+      cursor: not-allowed;
+    }
+  }
 `
 
 export const TextInput = styled.input`
@@ -146,7 +158,7 @@ export const ABLBSelect = (props) => (
 
 export const ErrorMessage = styled.p`
   padding: 10px 15px;
-  margin-left: 25px;
+  
   border: 2px solid ${({theme}) => theme.black};
   border-color: ${({theme}) => theme.red};
 `
@@ -161,6 +173,7 @@ export const AdminForm = styled.form`
     font-size: 16px;
     margin-bottom: 15px;
     margin-left: 0;
+    margin-left: 25px;
   }
 `
 
@@ -174,7 +187,12 @@ export const LoginForm = styled.form`
   
   .message {
   }
-  .error-message {
+  
+  ${ErrorMessage} {
+    font-size: 16px;
+    margin-bottom: 25px;
+    margin-left: 0;
   }
+
   max-width: 500px;
 `
