@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const FooterContainer = styled.div`
   background: ${props => props.theme.black};
   color: ${props => props.theme.white};
-  width: 100%;
   padding: 50px;
   
   > div {
