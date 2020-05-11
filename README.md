@@ -3,7 +3,7 @@
 
 ![ablb logo](./public/ablb_color.png)
 
-This is the front-end for [Arts-Based Learning in Business](https://ablb.atec.io).
+This is the front-end for [Arts-Based Learning in Business](https://ablb.atec.io | width=200).
 
 In the project directory, you can run:
 
