@@ -1,7 +1,9 @@
 # Ablb-app
 
-<img src="https://raw.githubusercontent.com/artscilab/ablb-app/master/public/ablb_color.png" width="256" height="256" title="ABLB Logo">
+<p align="center">
 
+  <img src="https://raw.githubusercontent.com/artscilab/ablb-app/master/public/ablb_color.png" width="256" height="256" title="ABLB Logo">
+</p>
 
 This is the front-end for [Arts-Based Learning in Business](https://ablb.atec.io).
 
