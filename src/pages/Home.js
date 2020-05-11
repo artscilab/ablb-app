@@ -6,42 +6,11 @@ import CandyStripe from '../components/CandyStripe';
 import ReactPlayer from 'react-player';
 import {useHistory, Link} from 'react-router-dom';
 import { SessionContext } from '../utils/session';
-
-const TestimonialContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
-  margin-bottom: 15px;
-`
-
-const TestimonialName = styled.p`
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 300;
-`
-
-const TestimonialText = styled.p`
-  font-size: 22px;
-  flex: 1;
-`
-
-const TestimonialBox = styled.div`
-  padding: 25px;
-  border: 2px solid ${({theme}) => theme.green};
-  width: 500px;
-  margin: 35px 15px;
-  display: flex;
-  flex-direction: column;
-  
-  ${TestimonialName} {
-    text-align: right;
-  }
-  ${TestimonialText} {
-    text-align: left;
-    margin-bottom: 15px;
-  }
-`
+import { 
+  TestimonialBox, 
+  TestimonialContainer, 
+  TestimonialName,
+  TestimonialText } from '../components/testimonials'
 
 const JumbotronDescription = styled.div`
   flex: 1;
@@ -84,7 +53,7 @@ const IntroVideoContainer = styled.div`
 `
 
 const CallToAction = styled.div`
-  margin: 100px 0 15px 0;
+  margin: 50px 0 15px 0;
 
   p.lead {
     margin-bottom: 35px;
@@ -93,6 +62,13 @@ const CallToAction = styled.div`
   ${ActionButton} {
     margin: 0 auto;
     display: block
+  }
+`
+
+const FeaturedTestimonials = styled.div`
+  a {
+    display: block;
+    text-align: right;
   }
 `
 
@@ -160,14 +136,19 @@ const Home = () => {
         </CallToAction>
         
         {featuredTestimonials && (
-          <TestimonialContainer>
-            {featuredTestimonials.map((t) => (
-              <TestimonialBox key={t.id}>
-                <TestimonialText>{t.text}</TestimonialText>
-                <TestimonialName>{t.name}, {t.school}</TestimonialName>
-              </TestimonialBox>
-            ))}
-          </TestimonialContainer>
+          <FeaturedTestimonials>
+            <TestimonialContainer>
+              {featuredTestimonials.map((t) => (
+                <TestimonialBox key={t.id}>
+                  <TestimonialText>{t.text}</TestimonialText>
+                  <TestimonialName>{t.name}, {t.school}</TestimonialName>
+                </TestimonialBox>
+              ))}
+            </TestimonialContainer>
+            <Link to="/testimonials">
+              <ActionButton inverted>Read more</ActionButton>
+            </Link>
+          </FeaturedTestimonials>
         )}
       </PageContent>
     </div>

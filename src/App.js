@@ -23,6 +23,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer';
 import Lesson from './pages/Lesson';
+import Testimonials from './pages/Testimonials';
 
 const theme = {
   black: "#141C26",
@@ -56,6 +57,9 @@ function App() {
               </Route>
               <Route exact path="/about">
                 <About></About>
+              </Route>
+              <Route exact path="/testimonials">
+                <Testimonials></Testimonials>
               </Route>
               <Route exact path="/login">
                 <Login></Login>
