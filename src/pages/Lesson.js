@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { PageHeader, PageContent, ActionButton, ErrorMessage } from '../components/common';
-import { useParams, Redirect, Link } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import request from '../utils/requests';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
@@ -40,6 +40,7 @@ const VideoSelectorContainer = styled.div`
 
 const Lesson = () => {
   const { id } = useParams();
+  const history = useHistory();
   const [lesson, setLessonData] = useState(null);
   const [videos, setVideos] = useState(null);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
@@ -48,13 +49,17 @@ const Lesson = () => {
 
   useEffect(() => {
     const getLesson = async () => {
-      let r = await request.get(`/lessons/${id}?include`)
-      setLessonData(r.data);
-      setVideos(r.data.videos);
+      try {
+        let r = await request.get(`/lessons/${id}?include`)
+        setLessonData(r.data);
+        setVideos(r.data.videos);
+      } catch (e) {
+        history.push("/404")
+      }
     }
 
     getLesson();
-  }, [id])
+  }, [history, id])
 
   if (!user) {
     return (

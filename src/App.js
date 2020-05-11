@@ -51,22 +51,22 @@ function App() {
           <Header></Header>
           <Layout>
             <Switch>
-              <Route path="/catalog">
+              <Route exact path="/catalog">
                 <Catalog></Catalog>
               </Route>
-              <Route path="/about">
+              <Route exact path="/about">
                 <About></About>
               </Route>
-              <Route path="/login">
+              <Route exact path="/login">
                 <Login></Login>
               </Route>
-              <Route path="/logout">
+              <Route exact path="/logout">
                 {user === null 
                 ? <Redirect to="/"></Redirect>
                 : <Logout></Logout>
                 }
               </Route>
-              <Route path="/signup">
+              <Route exact path="/signup">
                 {user === null
                 ? <Signup></Signup>
                 : <Redirect to="/"></Redirect> 
@@ -76,7 +76,7 @@ function App() {
               <Route exact path="/">
                 <Home></Home>
               </Route>
-              <Route path="/lesson/:id">
+              <Route path="/catalog/:id">
                 <Lesson></Lesson>
               </Route>
               <Route path="*">

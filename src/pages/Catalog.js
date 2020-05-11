@@ -74,7 +74,7 @@ const Catalog = () => {
           {lessons && lessons.map((lessonRow) => (
             <CatalogRow key={lessonRow[0].id}>
               {lessonRow.map((lesson) => (
-                <CatalogItem to={`/lesson/${lesson.id}`} key={lesson.id}>
+                <CatalogItem to={`/catalog/${lesson.id}`} key={lesson.id}>
                   <LessonTitle>{lesson.title}</LessonTitle>
                   <p>
                     {lesson.description.substring(0, 100)}{lesson.description.length > 100 && "..."}
