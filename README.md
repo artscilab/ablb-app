@@ -1,10 +1,9 @@
-
-## Ablb-app
+# Ablb-app
 
 <img src="https://raw.githubusercontent.com/artscilab/ablb-app/master/public/ablb_color.png" width="256" height="256" title="ABLB Logo">
 
 
-This is the front-end for [Arts-Based Learning in Business](https://ablb.atec.io | width=200).
+This is the front-end for [Arts-Based Learning in Business](https://ablb.atec.io).
 
 In the project directory, you can run:
 
