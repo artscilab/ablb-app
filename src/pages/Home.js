@@ -11,6 +11,7 @@ import {
   TestimonialContainer, 
   TestimonialName,
   TestimonialText } from '../components/testimonials'
+import Spinner from '../components/Spinner';
 
 const JumbotronDescription = styled.div`
   flex: 1;
@@ -135,7 +136,7 @@ const Home = () => {
           </ActionButton>
         </CallToAction>
         
-        {featuredTestimonials && (
+        {featuredTestimonials ? (
           <FeaturedTestimonials>
             <TestimonialContainer>
               {featuredTestimonials.map((t) => (
@@ -149,7 +150,7 @@ const Home = () => {
               <ActionButton inverted>Read more</ActionButton>
             </Link>
           </FeaturedTestimonials>
-        )}
+        ) : <Spinner></Spinner>}
       </PageContent>
     </div>
   )

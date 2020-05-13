@@ -5,6 +5,7 @@ import request from '../utils/requests';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import { SessionContext } from '../utils/session';
+import Spinner from '../components/Spinner';
 
 const VideoContainer = styled.div`
   margin: 50px 0;
@@ -70,7 +71,13 @@ const Lesson = () => {
   return (
     <div>
       {lesson === null 
-        ? <PageHeader>Loading</PageHeader> 
+        ? 
+        <>
+          <PageHeader>Loading</PageHeader> 
+          <PageContent>
+            <Spinner></Spinner>
+          </PageContent>
+        </>
         : 
         <>
           <PageHeader>{lesson.title}</PageHeader>

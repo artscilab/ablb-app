@@ -7,6 +7,7 @@ import {
   TestimonialContainer, 
   TestimonialName,
   TestimonialText } from '../components/testimonials'
+import Spinner from '../components/Spinner';
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState(null);
@@ -27,7 +28,7 @@ const Testimonials = () => {
     <div>
       <PageHeader>Testimonials</PageHeader>
       <PageContent>
-        {!testimonials ? <p>Loading</p>
+        {!testimonials ? <Spinner></Spinner>
         : (
           <>
             {testimonials.map((tRow, i) => (

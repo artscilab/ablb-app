@@ -4,6 +4,7 @@ import { PageHeader, PageContent } from '../components/common';
 import styled from 'styled-components';
 import { chunk } from '../utils';
 import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 const LessonTitle = styled.h2`
   margin-bottom: 15px;
@@ -71,7 +72,7 @@ const Catalog = () => {
       <PageHeader>ABLB Catalog</PageHeader>
       <PageContent>
           <p className="lead">All lessons are available freely. In order to watch the videos, make an account now!</p>
-          {lessons && lessons.map((lessonRow) => (
+          {lessons ? lessons.map((lessonRow) => (
             <CatalogRow key={lessonRow[0].id}>
               {lessonRow.map((lesson) => (
                 <CatalogItem to={`/catalog/${lesson.id}`} key={lesson.id}>
@@ -82,7 +83,7 @@ const Catalog = () => {
                 </CatalogItem>
               ))}
             </CatalogRow>
-          ))}
+          )) : <Spinner></Spinner>}
       </PageContent>
     </div>
   )
