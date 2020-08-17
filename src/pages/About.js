@@ -37,8 +37,8 @@ const PersonList = styled.div`
 `
 
 const About = () => {
-  const [aboutPageContent, setAboutPageContent] = useState("Loading")
-  const [people, setPeople] = useState([])
+  const [aboutPageContent, setAboutPageContent] = useState("<p>Loading</p>")
+  const [people, setPeople] = useState(null)
   const history = useHistory();
 
   useEffect(() => {
