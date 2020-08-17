@@ -61,6 +61,7 @@ const About = () => {
         setPeople(r.data)
       } catch (e) {
         console.log("Unable to get people")
+        setPeople([])
       }
     }
 
