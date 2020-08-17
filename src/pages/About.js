@@ -25,6 +25,10 @@ const Person = styled.div `
   .bio {
     margin: 10px 0;
   }
+
+  a {
+
+  }
 `
 
 const PersonList = styled.div`
@@ -91,7 +95,7 @@ const About = () => {
                 )}
 
                 {p.personalLink && (
-                  <a target="_blank" rel="noopener noreferrer" href={p.personalLink}>{p.personalLink.substring(0, 50)}</a>
+                  <a target="_blank" rel="noopener noreferrer" href={p.personalLink}>{p.personalLink.substring(0, 20)}...</a>
                 )}
 
                 <p class="bio">{p.bio}</p>
