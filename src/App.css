@@ -1,6 +1,7 @@
 body, html {
   height: 100%;
   background-color: #2c333c;
+  font-size: 20px;
 }
 
 p, a {
@@ -79,3 +80,80 @@ h3 {
   flex-direction: column;
   min-height: 100%;
 }
+
+.aboutEditorContainer {
+  background: rgba(100, 100, 120, 0.3);
+}
+
+.aboutEditorToolbar {
+  background: transparent;
+}
+.aboutEditorToolbar label {
+  background: transparent;
+  color: #2b2b2b
+}
+
+.aboutEditorToolbar button {
+  background: rgba(100, 100, 120, 1);
+  border: 2px solid rgba(130, 130, 130, 0.9);
+}
+
+.aboutEditor {
+  background: transparent;
+  min-height: 250px;
+  max-height: 300px;
+  overflow-y: scroll;
+  font-family: "brandon-grotesque";
+}
+
+.aboutEditor pre {
+  background: rgba(100, 100, 120, 0.3) !important;
+  border-left: 3px solid rgba(100, 100, 120, 0.9)
+}
+
+.aboutEditor ol li:before {
+  display: none
+}
+.aboutEditor ol li {
+  list-style-type: decimal;
+}
+
+.aboutEditor span {
+  font-size: 25px;
+}
+
+.aboutEditor pre span {
+  font-size: 18px;
+}
+
+.aboutEditor h1 span {
+  font-size: 42px; 
+}
+
+.aboutEditor h2 {
+  margin-bottom: 20px;
+}
+
+.aboutEditor h2 span {
+  font-size: 38px;
+}
+
+.aboutEditor h3 {
+  margin-bottom: 5px;
+}
+
+.aboutEditor h3 span {
+  font-size: 32px;
+}
+
+.aboutEditor blockquote {
+  background: rgba(100, 100, 120, 0.3) !important;
+  border-left: 3px solid rgba(100, 100, 120, 0.9)
+}
+
+.aboutEditor blockquote span {
+  font-size: 22px;
+  color: #f8f8f8;
+  font-family: "brandon-grotesque";
+}
+

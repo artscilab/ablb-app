@@ -29,7 +29,7 @@ const FileContainer = styled.div`
   }
 `
 
-const FileUpload = ({ children, ...props }) => {
+const FileUpload = ({ children, prompt, accept, resourceName, maxSize, id, formDataName, ...props }) => {
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(0);
 
@@ -39,10 +39,14 @@ const FileUpload = ({ children, ...props }) => {
       setFile(f[0])
     },
     onDropRejected: f => {
-      toast.error("Only mp4 videos are supported")
+      if (f[0].size > maxSize / 1024 / 1024) {
+        toast.error(`Make sure file is less than ${maxSize/1024 / 1024} mb in size`);
+      } else {
+        toast.error(`Only ${accept} file types are supported.`)
+      }
     },
-    accept: "video/mp4",
-    maxSize: 1048576 * 500,
+    accept: accept,
+    maxSize: maxSize,
   });
   
   return (
@@ -50,7 +54,7 @@ const FileUpload = ({ children, ...props }) => {
       <FileContainer {...getRootProps()}>
         <input {...getInputProps()} {...props}>
         </input>
-        <p>Drop video file here, or click to browse</p>
+        <p>{prompt}</p>
         {file && (
           <p className="selected">Selected: {file.name}</p>
         )}
@@ -66,10 +70,10 @@ const FileUpload = ({ children, ...props }) => {
           return;
         }
         const formData = new FormData();
-        formData.append("videoFile", file)
+        formData.append(formDataName, file)
         
         try {
-          await request.post(`/videos/${props.id}/upload`, formData, {
+          await request.post(`/${resourceName}/${id}/upload`, formData, {
             headers: {
               'content-type': "multipart/form-data"
             },

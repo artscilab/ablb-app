@@ -123,7 +123,13 @@ const VideoSection = () => {
             }
           ]}></Editor>
           {selectedVideo && (
-            <FileUpload id={selectedVideo.id}></FileUpload>
+            <FileUpload 
+              resourceName="videos"
+              prompt="Drop video file here, or click to browse"
+              maxSize={1048576 * 500}
+              formDataName="videoFile"
+              accept="video/mp4"
+              id={selectedVideo.id}></FileUpload>
           )}
       </SectionEditor>
     </Section>

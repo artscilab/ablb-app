@@ -4,6 +4,8 @@ import TestimonialSection from './TestimonialSection';
 import LessonSection from './LessonSection';
 import VideoSection from './VideoSection';
 import UserSection from './UserSection';
+import PersonSection from './PersonSection';
+import AboutSection from './AboutSection';
 
 
 const Admin = () => {
@@ -14,6 +16,8 @@ const Admin = () => {
         <TestimonialSection></TestimonialSection>
         <LessonSection></LessonSection>
         <VideoSection></VideoSection>
+        <PersonSection></PersonSection>
+        <AboutSection></AboutSection>
         <UserSection></UserSection>
       </PageContent>
     </div>
