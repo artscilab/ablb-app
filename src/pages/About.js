@@ -95,7 +95,10 @@ const About = () => {
                 )}
 
                 {p.personalLink && (
-                  <a target="_blank" rel="noopener noreferrer" href={p.personalLink}>{p.personalLink.substring(0, 20)}...</a>
+                  <a target="_blank" rel="noopener noreferrer" href={p.personalLink}>
+                    {p.personalLink.substring(0, 20)}
+                    {p.personalLink.length > 20 && "..."}
+                  </a>
                 )}
 
                 <p class="bio">{p.bio}</p>
